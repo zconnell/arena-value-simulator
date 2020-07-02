@@ -9,8 +9,11 @@ Files currently included:
 1. ArenaValueSimulator.py - Python program to simulate playing events in Magic Arena.
 2. ArenaEvent.py - Defines the ArenaEvent class (An Arena Event is a series of matches played. A match is a series of games.)
 3. ArenaSimulation.py - Defines the ArenaSimulation class (An Arena Simulation is a series of Events played that results in gems and packs.)
-4. simulations.json - A sample output file of the ArenaValueSimulator.
+4. simulations.json - A sample output file of the ArenaValueSimulator (note: Actual output file from the ArenaValueSimulator is larger than GitHub 25MB limit).
+5. EventsGraphMaker - Makes the Events Played vs. Game Win % Graph from the sample file
+6. Events Played vs. Game Win Percentage - Image file of a graph made with the Events G
 
 If you want to run these simulations yourself:
 1. Save ArenaEvent, ArenaSimulation, and ArenaValueSimulator to the same directory.
 2. Run ArenaValueSimulator. This will create a JSON output file in the directory where ArenaSimulation is saved.
+3. Run the EventsGraphMaker. This will create a graph of Events Played vs. Game Win % based on the simulation file created by ArenaValueSimulator.
