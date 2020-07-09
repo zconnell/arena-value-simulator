@@ -8,31 +8,30 @@ inputFileName = 'simulations.json'
 with open(inputFileName, 'r') as file:
     simulations = json.load(file)
 
-eventPlotStyles = {'BO1':'.r', 'BO3':'.b'}
-
-winP = {}
+eventsPlayedByWinPercent = {}
 for ID in simulations:
     thisSim = simulations[ID]
     winPercent = thisSim['win percent']
     eventName = thisSim['event name']
-    if not eventName in winP.keys():
-        winP[eventName] = {}
-    if not winPercent in winP[eventName]:
-        winP[eventName][winPercent] = []
-    winP[eventName][winPercent].append(thisSim['events played'])
+    if not eventName in eventsPlayedByWinPercent.keys():
+        eventsPlayedByWinPercent[eventName] = {}
+    if not winPercent in eventsPlayedByWinPercent[eventName]:
+        eventsPlayedByWinPercent[eventName][winPercent] = []
+    eventsPlayedByWinPercent[eventName][winPercent].append(thisSim['events played'])
 
 fig,ax = plt.subplots()
+eventPlotStyles = {'BO1':'.r', 'BO3':'.b'}
 
-for eventName in winP:
+for eventName in eventsPlayedByWinPercent:
     plotStyle = eventPlotStyles[eventName]
-    xAxes = []
+    xValues = []
     yValues = []
-    for winPercent in winP[eventName]:
-        eventsPlayed = winP[eventName][winPercent]
-        xAxes.append(winPercent)
+    for winPercent in eventsPlayedByWinPercent[eventName]:
+        eventsPlayed = eventsPlayedByWinPercent[eventName][winPercent]
+        xValues.append(winPercent)
         eventsPlayedMean = numpy.mean(eventsPlayed)
         yValues.append(eventsPlayedMean)
-    ax.plot(xAxes,yValues,plotStyle, label=eventName)
+    ax.plot(xValues,yValues,plotStyle, label=eventName)
 
 ax.set_title('Going infinite on Magic Arena:\nEvents Played vs. Game Win Percentage')
 ax.set_xlabel('Game Win Percentage')
